@@ -34,7 +34,12 @@ JOIN Customer ON Invoice.CustomerId == Customer.CustomerId
 JOIN Employee ON Customer.SupportRepId == Employee.EmployeeId
 WHERE Employee.Title == "Sales Support Agent";
 ```
-1. Provide a query that shows the Invoice Total, Customer name, Country and Sale Agent name for all invoices and customers.
+Provide a query that shows the Invoice Total, Customer name, Country and Sale Agent name for all invoices and customers.
+```sql
+SELECT Customer.FirstName || " " || Customer.LastName, Invoice.Total, Customer.Country, Employee.FirstName || " " || Employee.LastName AS "Sales Agent" FROM Invoice
+JOIN Customer ON Invoice.CustomerId == Customer.CustomerId
+JOIN Employee ON Customer.SupportRepId == Employee.EmployeeId;
+```
 1. How many Invoices were there in 2009 and 2011? 
 1. What are the respective total sales for each of those years?
 1. Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for Invoice ID 37.
