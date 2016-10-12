@@ -40,7 +40,11 @@ SELECT Customer.FirstName || " " || Customer.LastName, Invoice.Total, Customer.C
 JOIN Customer ON Invoice.CustomerId == Customer.CustomerId
 JOIN Employee ON Customer.SupportRepId == Employee.EmployeeId;
 ```
-1. How many Invoices were there in 2009 and 2011? 
+How many Invoices were there in 2009 and 2011? 
+```sql
+SELECT COUNT(*) FROM Invoice
+WHERE strftime('%Y', InvoiceDate) = "2009" OR strftime('%Y', InvoiceDate) = "2011";
+```
 1. What are the respective total sales for each of those years?
 1. Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for Invoice ID 37.
 1. Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for each Invoice. HINT: [GROUP BY](http://www.sqlite.org/lang_select.html#resultset)
