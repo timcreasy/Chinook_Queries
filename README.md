@@ -27,7 +27,13 @@ Provide a query showing a unique/distinct list of billing countries from the Inv
 SELECT BillingCountry FROM Invoice
 GROUP BY BillingCountry;
 ```
-1. Provide a query that shows the invoices associated with each sales agent. The resultant table should include the Sales Agent's full name.
+Provide a query that shows the invoices associated with each sales agent. The resultant table should include the Sales Agent's full name.
+```sql
+SELECT Employee.FirstName || " " || Employee.LastName AS "Full Name", Invoice.* FROM Invoice
+JOIN Customer ON Invoice.CustomerId == Customer.CustomerId
+JOIN Employee ON Customer.SupportRepId == Employee.EmployeeId
+WHERE Employee.Title == "Sales Support Agent";
+```
 1. Provide a query that shows the Invoice Total, Customer name, Country and Sale Agent name for all invoices and customers.
 1. How many Invoices were there in 2009 and 2011? 
 1. What are the respective total sales for each of those years?
