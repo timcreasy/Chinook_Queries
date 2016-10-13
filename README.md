@@ -75,7 +75,11 @@ JOIN Track ON InvoiceLine.TrackId = Track.TrackId
 JOIN Album ON Track.AlbumId = Album.AlbumId
 JOIN Artist ON Album.ArtistId = Artist.ArtistId
 ```
-1. Provide a query that shows the # of invoices per country. HINT: [GROUP BY](http://www.sqlite.org/lang_select.html#resultset)
+Provide a query that shows the # of invoices per country. HINT: [GROUP BY](http://www.sqlite.org/lang_select.html#resultset)
+```sql
+SELECT BillingCountry, COUNT(*) AS "Number of Invoices"  FROM Invoice
+GROUP BY BillingCountry
+```
 1. Provide a query that shows the total number of tracks in each playlist. The Playlist name should be include on the resulant table.
 1. Provide a query that shows all the Tracks, but displays no IDs. The result should include the Album name, Media type and Genre.
 1. Provide a query that shows all Invoices but includes the # of invoice line items.
