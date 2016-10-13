@@ -123,8 +123,17 @@ JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
 GROUP BY Employee.EmployeeId
 ORDER BY "Total Sales" DESC LIMIT 1
 ```
-1. Provide a query that shows the count of customers assigned to each sales agent.
-1. Provide a query that shows the total sales per country.
+Provide a query that shows the count of customers assigned to each sales agent.
+```sql
+SELECT Employee.*, COUNT(Customer.CustomerId) AS "Number of customers" FROM Employee
+JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+GROUP BY Employee.EmployeeId
+```
+Provide a query that shows the total sales per country.
+```sql
+SELECT *, SUM(Invoice.Total) AS "Total Sales" FROM Invoice
+GROUP BY BillingCountry
+```
 1. Which country's customers spent the most?
 1. Provide a query that shows the most purchased track of 2013.
 1. Provide a query that shows the top 5 most purchased tracks over all.
