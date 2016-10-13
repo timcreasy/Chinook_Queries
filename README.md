@@ -93,12 +93,28 @@ JOIN Album ON Track.AlbumId = Album.AlbumId
 JOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId
 JOIN Genre ON Track.GenreId = Genre.GenreId
 ```
-1. Provide a query that shows all Invoices but includes the # of invoice line items.
-1. Provide a query that shows total sales made by each sales agent.
-1. Which sales agent made the most in sales in 2009?
-
-    > **Hint:** Use the [MAX](https://www.sqlite.org/lang_aggfunc.html#maxggunc) function on a [subquery](http://beginner-sql-tutorial.com/sql-subquery.htm).
-
+Provide a query that shows all Invoices but includes the # of invoice line items.
+```sql
+SELECT Invoice.*, COUNT(InvoiceLine.InvoiceId) AS "Invoice Lines" FROM Invoice
+JOIN InvoiceLine ON Invoice.InvoiceId = InvoiceLine.InvoiceId
+GROUP BY InvoiceLine.InvoiceId
+```
+Provide a query that shows total sales made by each sales agent.
+```sql
+SELECT Employee.*, SUM(Invoice.Total) AS "Total Sales" FROM Employee
+JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
+GROUP BY Employee.EmployeeId
+```
+Which sales agent made the most in sales in 2009?
+```sql
+SELECT Employee.*, SUM(Invoice.Total) AS "Total Sales" FROM Employee
+JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
+WHERE strftime("%Y", Invoice.InvoiceDate) = "2009"
+GROUP BY Employee.EmployeeId
+ORDER BY "Total Sales" DESC LIMIT 1
+```
 1. Which sales agent made the most in sales over all?
 1. Provide a query that shows the count of customers assigned to each sales agent.
 1. Provide a query that shows the total sales per country.
