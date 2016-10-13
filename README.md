@@ -115,7 +115,14 @@ WHERE strftime("%Y", Invoice.InvoiceDate) = "2009"
 GROUP BY Employee.EmployeeId
 ORDER BY "Total Sales" DESC LIMIT 1
 ```
-1. Which sales agent made the most in sales over all?
+Which sales agent made the most in sales over all?
+```sql
+SELECT Employee.*, SUM(Invoice.Total) AS "Total Sales" FROM Employee
+JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
+GROUP BY Employee.EmployeeId
+ORDER BY "Total Sales" DESC LIMIT 1
+```
 1. Provide a query that shows the count of customers assigned to each sales agent.
 1. Provide a query that shows the total sales per country.
 1. Which country's customers spent the most?
