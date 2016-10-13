@@ -135,6 +135,9 @@ SELECT *, SUM(Invoice.Total) AS "Total Sales" FROM Invoice
 GROUP BY BillingCountry
 ```
 1. Which country's customers spent the most?
+```sql
+SELECT BillingCountry, MAX(Total) AS "Total" FROM Invoice
+```
 1. Provide a query that shows the most purchased track of 2013.
 1. Provide a query that shows the top 5 most purchased tracks over all.
 1. Provide a query that shows the top 3 best selling artists.
