@@ -145,6 +145,12 @@ JOIN Track ON InvoiceLine.TrackId = Track.TrackId
 GROUP BY InvoiceLine.TrackId
 ORDER BY "Total Sales" DESC LIMIT 1
 ```
-1. Provide a query that shows the top 5 most purchased tracks over all.
+Provide a query that shows the top 5 most purchased tracks over all.
+```sql
+SELECT Track.*, SUM(InvoiceLine.TrackId) AS "Total Sales" FROM InvoiceLine
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId
+GROUP BY InvoiceLine.TrackId
+ORDER BY "Total Sales" DESC LIMIT 5
+```
 1. Provide a query that shows the top 3 best selling artists.
 1. Provide a query that shows the most purchased Media Type.
