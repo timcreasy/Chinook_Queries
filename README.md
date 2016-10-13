@@ -47,6 +47,10 @@ WHERE strftime('%Y', InvoiceDate) = "2009" OR strftime('%Y', InvoiceDate) = "201
 ```
 1. What are the respective total sales for each of those years?
 1. Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for Invoice ID 37.
+```sql
+SELECT COUNT(*) FROM InvoiceLine
+WHERE InvoiceId = 37
+```
 1. Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for each Invoice. HINT: [GROUP BY](http://www.sqlite.org/lang_select.html#resultset)
 1. Provide a query that includes the purchased track name with each invoice line item.
 1. Provide a query that includes the purchased track name AND artist name with each invoice line item.
