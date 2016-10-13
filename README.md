@@ -161,4 +161,11 @@ JOIN Artist ON Album.ArtistId = Artist.ArtistId
 GROUP BY InvoiceLine.TrackId
 ORDER BY "Total Sales" DESC LIMIT 3
 ```
-1. Provide a query that shows the most purchased Media Type.
+Provide a query that shows the most purchased Media Type.
+```sql
+SELECT MediaType.Name, COUNT(*) AS "Count" FROM InvoiceLine
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId
+JOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId
+GROUP BY MediaType.Name
+ORDER BY "Count" DESC LIMIT 1
+```
