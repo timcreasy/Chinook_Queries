@@ -80,8 +80,19 @@ Provide a query that shows the # of invoices per country. HINT: [GROUP BY](http:
 SELECT BillingCountry, COUNT(*) AS "Number of Invoices"  FROM Invoice
 GROUP BY BillingCountry
 ```
-1. Provide a query that shows the total number of tracks in each playlist. The Playlist name should be include on the resulant table.
-1. Provide a query that shows all the Tracks, but displays no IDs. The result should include the Album name, Media type and Genre.
+Provide a query that shows the total number of tracks in each playlist. The Playlist name should be include on the resulant table.
+```sql
+SELECT Playlist.Name, COUNT(Playlist.Name) AS "Total" FROM Playlist
+JOIN PlaylistTrack ON Playlist.PlaylistId = PlaylistTrack.PlaylistId
+GROUP BY Playlist.Name
+```
+Provide a query that shows all the Tracks, but displays no IDs. The result should include the Album name, Media type and Genre.
+```sql
+SELECT Track.Name, Track.Composer, Track.Milliseconds, Track.UnitPrice, Album.Title, MediaType.Name, Genre.Name  FROM Track
+JOIN Album ON Track.AlbumId = Album.AlbumId
+JOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId
+JOIN Genre ON Track.GenreId = Genre.GenreId
+```
 1. Provide a query that shows all Invoices but includes the # of invoice line items.
 1. Provide a query that shows total sales made by each sales agent.
 1. Which sales agent made the most in sales in 2009?
